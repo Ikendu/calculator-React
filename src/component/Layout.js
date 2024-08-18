@@ -11,36 +11,33 @@ const Layout = (props) => {
 
     if (value === "=") {
       if (input !== "") {
+        let res = "";
+
         try {
-          const res = safeEval(input);
-          setResult(res);
-          setInput(input + " = ");
+          res = eval(input);
         } catch (err) {
           setResult("Math error");
         }
+        if (res === undefined) setResult("Math error");
+        else {
+          setResult(res);
+          setInput(input + " = ");
+        }
+        setInput(res);
       }
     } else if (value === "C") {
       setResult("");
       setInput("0");
     } else if (value === "DEL") {
       let del = input;
-      del = del.slice(0, -1);
-      setInput(del || "0");
-    } else if (input === "0") {
-      setInput(value);
-    } else {
-      setInput(input + value);
-    }
-  };
-
-  const safeEval = (expression) => {
-    // Create a Function that returns the result of the expression
-    const fn = new Function("return " + expression);
-    return fn();
+      del = del.substr(0, input - 1);
+      setInput(del);
+    } else if (input === "0") setInput(value);
+    else setInput((input += value));
   };
 
   return (
-    <div className="wrapper">
+    <div className="">
       <h2>Basic Calculator</h2>
       <div className="calculator">
         <br></br>
