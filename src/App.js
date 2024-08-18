@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import Layout from './component/Layout';
+// import logo from './logo.svg';
+import "./App.css";
+import Layout from "./component/Layout";
 
 //calculator app
 function App() {
