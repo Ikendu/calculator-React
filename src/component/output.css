@@ -1,11 +1,11 @@
 .screen {
-    display: block;
-    margin: 0 auto;
-    width: 90%;
-    height: 40px;
-    border: none; 
-    background-color: #25a8e0;   
-    color: white;
-    text-align: right;
-    padding: 7px 20px 10px 10px;
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  height: 40px;
+  border: none;
+  background-color: #710786;
+  color: white;
+  text-align: right;
+  padding: 7px 20px 10px 10px;
 }
