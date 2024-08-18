@@ -11,17 +11,12 @@ const Layout = (props) => {
 
     if (value === "=") {
       if (input !== "") {
-        let res = "";
-
         try {
-          res = eval(input);
-        } catch (err) {
-          setResult("Math error");
-        }
-        if (res === undefined) setResult("Math error");
-        else {
+          const res = safeEval(input);
           setResult(res);
           setInput(input + " = ");
+        } catch (err) {
+          setResult("Math error");
         }
       }
     } else if (value === "C") {
@@ -29,10 +24,19 @@ const Layout = (props) => {
       setInput("0");
     } else if (value === "DEL") {
       let del = input;
-      del = del.substr(0, input - 1);
-      setInput(del);
-    } else if (input === "0") setInput(value);
-    else setInput((input += value));
+      del = del.slice(0, -1);
+      setInput(del || "0");
+    } else if (input === "0") {
+      setInput(value);
+    } else {
+      setInput(input + value);
+    }
+  };
+
+  const safeEval = (expression) => {
+    // Create a Function that returns the result of the expression
+    const fn = new Function("return " + expression);
+    return fn();
   };
 
   return (
